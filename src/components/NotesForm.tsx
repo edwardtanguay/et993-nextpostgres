@@ -1,4 +1,5 @@
 import { INewNote } from "@/interfaces";
+import axios from "axios";
 
 interface IProps {
 	newNote: INewNote;
@@ -21,9 +22,19 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 		setNewNote(structuredClone(newNote));
 	};
 
-	const handleFormSubmit = () => {
-		alert('saving note')
-	}
+	const handleFormSubmit = async () => {
+		const headers = {
+			"Access-Control-Allow-Origin": "*",
+			"Content-Type": "application/json",
+		};
+		try {
+			const response = await axios.post("/api/add-note", newNote, {
+				headers,
+			});
+		} catch (error: any) {
+			console.log("error occurred");
+		}
+	};
 
 	return (
 		<>
@@ -33,7 +44,9 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 						Note:
 					</label>
 					<textarea
-						onChange={(e) => handleFieldChange("body", e.target.value)}
+						onChange={(e) =>
+							handleFieldChange("body", e.target.value)
+						}
 						value={newNote.body}
 						className="w-full"
 						id="note"
@@ -46,7 +59,9 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 					</label>
 					<input
 						value={newNote.rank}
-						onChange={(e) => handleFieldChange("rank", e.target.value)}
+						onChange={(e) =>
+							handleFieldChange("rank", e.target.value)
+						}
 						className="w-[4rem] text-right"
 						id="rank"
 						type="text"
@@ -59,7 +74,9 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 					</label>
 					<input
 						value={newNote.app_pin}
-						onChange={(e) => handleFieldChange("app_pin", e.target.value)}
+						onChange={(e) =>
+							handleFieldChange("app_pin", e.target.value)
+						}
 						className="w-[7rem]"
 						type="password"
 						id="app_pin"
