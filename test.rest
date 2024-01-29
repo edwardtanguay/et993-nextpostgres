@@ -6,6 +6,9 @@ content-type: application/json
 
 {
 	"app_pin": "123",
-	"body": "this is the second note",
-	"rank": 2.2
+	"body": "this is the third local note",
+	"rank": 3.6
 }
+
+### GET ALL NOTES
+POST {{url}}/api/get-notes
