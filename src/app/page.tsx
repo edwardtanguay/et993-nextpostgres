@@ -7,17 +7,20 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
 	const [notes, setNotes] = useState<INote[]>([]);
-	const [newNote, setNewNote] = useState<INewNote>(structuredClone(blankNewNote));
+	const [newNote, setNewNote] = useState<INewNote>(
+		structuredClone(blankNewNote)
+	);
 
 	const fetchAllNotes = async () => {
 		const headers = {
 			"Cache-Control": "no-cache",
 			Pragma: "no-cache",
-			Expires: 0,
+			Expires: "0",
 		};
 		const response = await axios.post(`/api/get-notes`, {}, { headers });
 		const _notes = response.data;
 		setNotes(structuredClone(_notes));
+		console.log(Math.random(), "just set notes");
 	};
 
 	useEffect(() => {
@@ -29,7 +32,11 @@ export default function Home() {
 			<>
 				<h1 className="text-2xl mb-3">Note Taker</h1>
 
-				<NotesForm newNote={newNote} setNewNote={setNewNote} fetchAllNotes={fetchAllNotes} />
+				<NotesForm
+					newNote={newNote}
+					setNewNote={setNewNote}
+					fetchAllNotes={fetchAllNotes}
+				/>
 
 				<section className="mt-4">
 					{notes.length === 0 ? (

@@ -21,7 +21,6 @@ export const NotesForm = ({ newNote, setNewNote, fetchAllNotes }: IProps) => {
 				break;
 		}
 		setNewNote(structuredClone(newNote));
-		fetchAllNotes();
 	};
 
 	const handleFormSubmit = async () => {
@@ -34,8 +33,9 @@ export const NotesForm = ({ newNote, setNewNote, fetchAllNotes }: IProps) => {
 				headers,
 			});
 			setNewNote(blankNewNote);
+			fetchAllNotes();
 		} catch (error: any) {
-			alert('your note could not be saved')
+			alert("your note could not be saved");
 		}
 	};
 
