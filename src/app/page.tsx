@@ -29,7 +29,7 @@ export default function Home() {
 			<>
 				<h1 className="text-2xl mb-3">Note Taker</h1>
 
-				<NotesForm />
+				<NotesForm newNote={newNote} />
 
 				<section className="mt-4">
 					{notes.length === 0 ? (
