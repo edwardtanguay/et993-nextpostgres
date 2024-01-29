@@ -32,7 +32,7 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 				headers,
 			});
 		} catch (error: any) {
-			console.log("error occurred");
+			alert('your note could not be saved')
 		}
 	};
 
