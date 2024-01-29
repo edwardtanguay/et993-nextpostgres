@@ -1,4 +1,5 @@
 "use client";
+import { Notes } from "@/components/Notes";
 import { INewNote, INote, blankNewNote } from "@/interfaces";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -31,6 +32,8 @@ export default function Home() {
 				) : (
 					<p>There are {notes.length} notes:</p>
 				)}
+
+				<Notes notes={notes} />
 			</>
 		</main>
 	);
