@@ -11,6 +11,12 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 			case "body":
 				newNote.body = value;
 				break;
+			case "rank":
+				newNote.rank = value;
+				break;
+			case "app_pin":
+				newNote.app_pin = value;
+				break;
 		}
 		setNewNote(structuredClone(newNote));
 	};
@@ -36,6 +42,7 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 					</label>
 					<input
 						value={newNote.rank}
+						onChange={(e) => onFieldChange("rank", e.target.value)}
 						className="w-[4rem] text-right"
 						id="rank"
 						type="text"
@@ -48,6 +55,7 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 					</label>
 					<input
 						value={newNote.app_pin}
+						onChange={(e) => onFieldChange("app_pin", e.target.value)}
 						className="w-[7rem]"
 						type="password"
 						id="app_pin"
@@ -63,9 +71,6 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 					</button>
 				</div>
 			</form>
-			<p>body: {newNote.body}</p>
-			<p>rank: {newNote.rank}</p>
-			<p>pin: {newNote.app_pin}</p>
 		</>
 	);
 };
