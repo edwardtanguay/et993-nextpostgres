@@ -6,7 +6,7 @@ interface IProps {
 }
 
 export const NotesForm = ({ newNote, setNewNote }: IProps) => {
-	const onFieldChange = (fieldIdCode: string, value: string) => {
+	const handleFieldChange = (fieldIdCode: string, value: string) => {
 		switch (fieldIdCode) {
 			case "body":
 				newNote.body = value;
@@ -21,6 +21,10 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 		setNewNote(structuredClone(newNote));
 	};
 
+	const handleFormSubmit = () => {
+		alert('saving note')
+	}
+
 	return (
 		<>
 			<form className="bg-slate-400 p-6 rounded-lg">
@@ -29,7 +33,7 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 						Note:
 					</label>
 					<textarea
-						onChange={(e) => onFieldChange("body", e.target.value)}
+						onChange={(e) => handleFieldChange("body", e.target.value)}
 						value={newNote.body}
 						className="w-full"
 						id="note"
@@ -42,7 +46,7 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 					</label>
 					<input
 						value={newNote.rank}
-						onChange={(e) => onFieldChange("rank", e.target.value)}
+						onChange={(e) => handleFieldChange("rank", e.target.value)}
 						className="w-[4rem] text-right"
 						id="rank"
 						type="text"
@@ -55,7 +59,7 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 					</label>
 					<input
 						value={newNote.app_pin}
-						onChange={(e) => onFieldChange("app_pin", e.target.value)}
+						onChange={(e) => handleFieldChange("app_pin", e.target.value)}
 						className="w-[7rem]"
 						type="password"
 						id="app_pin"
@@ -65,6 +69,7 @@ export const NotesForm = ({ newNote, setNewNote }: IProps) => {
 				<div className="mb-3 flex justify-end">
 					<button
 						type="button"
+						onClick={handleFormSubmit}
 						className="bg-slate-800 px-2 py-1 rounded-sm text-slate-400"
 					>
 						Save
